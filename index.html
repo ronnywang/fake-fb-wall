@@ -28,7 +28,7 @@ Google 試算表網址：<input type="text" name="url">
 			<div class="post">
 				<div class="top">
 					<div class="img fileinput-preview">
-						<img src="assets/images/facebook/profile.jpg" width="40" height="40" id="profile">
+						<img src="assets/images/facebook/profile.jpg" width="40" height="40" id="profile" class="profile-avatar">
 					</div>
 					<div class="name">
 						<strong><a href="#"><span class="text-name">蔡瑞月</span></a><span class="text-place"></span></strong>
@@ -117,6 +117,10 @@ console.log(entry);
 
 			}
 		}
+		if (entry['gsx$頭像']['$t']) {
+            $('.profile-avatar', post_dom).attr('src', entry['gsx$頭像']['$t']);
+        }
+
 		$('#result').append(post_dom);
 	}
 }, 'json');
