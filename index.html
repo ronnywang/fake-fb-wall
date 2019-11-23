@@ -98,9 +98,11 @@ console.log(entry);
 		$('.text-name', post_dom).text(entry['gsx$名稱']['$t']);
 		$('.text-when', post_dom).text(entry['gsx$時間']['$t']);
 		$('.text-message', post_dom).text(entry['gsx$對話']['$t']);
-		$('.text-likes', post_dom).text(entry['gsx$like數']['$t']);
-		if (entry['gsx$照片']['$t']) {
-			$('.img_message', post_dom).append($('<img>').attr('src', entry['gsx$照片']['$t']).addClass('img-responsive'));
+        if (entry['gsx$like數']) {
+            $('.text-likes', post_dom).text(entry['gsx$like數']['$t']);
+        }
+		if (entry['gsx$照片'] && entry['gsx$照片']['$t']) {
+			$('.img_message', post_dom).append($('<img>').attr('src', entry['gsx$照片']['$t']).addClass('img-responsive').attr('width', 490));
 		}
 		if (entry['gsx$地點']['$t']) {
 			$('.text-place', post_dom).append('在').append($('<a></a>').text(entry['gsx$地點']['$t']).attr('href', '#'));
