@@ -1,0 +1,125 @@
+<html>
+<head>
+<base href="https://fakepostgenerator.com/">
+<link rel="stylesheet" href="assets/css/facebook_status.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<form method="get" action="">
+Google 試算表網址：<input type="text" name="url">
+<button type="submit">送出</button>
+</form>
+<div id="result">
+</div>
+<script id="tmp-comment" type="text/html">
+<li>
+<div class="img"><img src="assets/images/facebook/profile.jpg" width="32" height="32"></div>
+<div class="txt">
+	<strong><a href="#" class="comment-name"></a></strong> 
+	<span class="fb-comment-text"></span> 
+	<div class="txtbottom"><a href="#" class="text-liketext">讚</a> · <a href="#">回覆</a> · <span style="color:#9197a3;">&nbsp;</span>
+	</div>
+</div>
+<div class="clearfix"></div>
+</li>
+</script>
+<script id="tmpl-fb" type="text/html">
+<div class="fb" id="download">
+			<div class="post">
+				<div class="top">
+					<div class="img fileinput-preview">
+						<img src="assets/images/facebook/profile.jpg" width="40" height="40" id="profile">
+					</div>
+					<div class="name">
+						<strong><a href="#"><span class="text-name">蔡瑞月</span></a><span class="text-place"></span></strong>
+						<div class="date">
+							<span class="text-when">1959/3/27</span> ·<img src="assets/images/facebook/icon_public.jpg" width="16" height="16" id="visiblefor-icon">
+						</div>
+						<div class="top_arrow"></div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="img_message"></div>
+				<span class="text-message">今天中華舞蹈社立案了，覺得開心</span>
+				<div class="txtbottom">
+					<a href="#" class="text-liketext">讚</a> · <a href="#" class="text-commenttext">留言</a> · <a href="#" class="text-sharetext">分享</a>
+				</div>
+			</div>
+			<div class="post_likes">
+				<img src="assets/images/facebook/facebook_like_thumb.png"> <a href="#"><span class="text-likes">4 people</span></a> <span class="text-likethistext">like this</span>.
+			</div>
+			<!--<div class="post_shares">
+				<i class="shares"></i> <a href="#"><span class="text-shares"></span></a>
+			</div>-->
+		  <ul class="comments" id="comments">
+		  </ul>
+			<div class="clearfix"></div>
+			<div class="post_write_comment">
+				<div class="img">
+					<img src="assets/images/facebook/profile.jpg" width="32" height="32">
+				</div>
+				<div class="txt">
+					<div class="text_block">
+						<div class="comment">
+							<div class="pull-left text-wrcommenttext">
+								Write a comment ...                            </div>
+							<div class="pull-right text-right">
+								<img src="assets/images/facebook/fot_ico.png" class="fot_ico">
+								<img src="assets/images/facebook/smile_ico.png" class="smile_ico">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix">
+			</div>
+		</div>
+</div>
+</script>
+<script>
+var link = 'https://spreadsheets.google.com/feeds/list/12IRwz1oFXVtQEJgPoi8UqMDzabqo8LfOkSfsWIzRkvI/1/public/values?alt=json';
+if (document.location.href.match(/url=([^&]*)/)) {
+	var matches = document.location.href.match(/url=([^&]*)/);
+	var url = decodeURIComponent(matches[1]);
+	var matches = url.match('/d/([^/]*)/');
+	link = 'https://spreadsheets.google.com/feeds/list/' + matches[1] + '/1/public/values?alt=json';
+
+	$('input').val(url);
+}
+$.get(link, function(ret){
+    for (var i = 0; i < ret.feed.entry.length; i ++) {
+		var entry = ret.feed.entry[i];
+		var post_dom = $($('#tmpl-fb').html());
+		if (!entry['gsx$名稱']['$t']) continue;
+console.log(entry);
+
+		$('.text-name', post_dom).text(entry['gsx$名稱']['$t']);
+		$('.text-when', post_dom).text(entry['gsx$時間']['$t']);
+		$('.text-message', post_dom).text(entry['gsx$對話']['$t']);
+		$('.text-likes', post_dom).text(entry['gsx$like數']['$t']);
+		if (entry['gsx$照片']['$t']) {
+			$('.img_message', post_dom).append($('<img>').attr('src', entry['gsx$照片']['$t']).addClass('img-responsive'));
+		}
+		if (entry['gsx$地點']['$t']) {
+			$('.text-place', post_dom).append('在').append($('<a></a>').text(entry['gsx$地點']['$t']).attr('href', '#'));
+		}
+		if (entry['gsx$留言']['$t']) {
+			var lines = entry['gsx$留言']['$t'].split("\n");
+			for (var j = 0; j < lines.length; j ++) {
+				var line = $.trim(lines[j]);
+				if (line == '') continue;
+
+				var li_dom = $($('#tmp-comment').html());
+				$('.comment-name', li_dom).text(line.split('：')[0]);
+				$('.fb-comment-text', li_dom).text(line.split('：')[1]);
+
+				$('.comments', post_dom).append(li_dom);
+
+			}
+		}
+		$('#result').append(post_dom);
+	}
+}, 'json');
+</script>
+</body>
+</html>
