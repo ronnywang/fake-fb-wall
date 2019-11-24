@@ -82,10 +82,14 @@ if (document.location.href.match(/url=([^&]*)/)) {
 	var matches = document.location.href.match(/url=([^&]*)/);
 	var url = decodeURIComponent(matches[1]);
 	var matches = url.match('/d/([^/]*)/');
+    var id = matches[1];
 	link = 'https://spreadsheets.google.com/feeds/list/' + matches[1] + '/1/public/values?alt=json';
 
-	$('input').val(url);
+} else {
+    var id = '12IRwz1oFXVtQEJgPoi8UqMDzabqo8LfOkSfsWIzRkvI';
 }
+$('input').val('https://docs.google.com/spreadsheets/d/' + id + '/edit#gid=0');
+
 $.get(link, function(ret){
     for (var i = 0; i < ret.feed.entry.length; i ++) {
 		var entry = ret.feed.entry[i];
