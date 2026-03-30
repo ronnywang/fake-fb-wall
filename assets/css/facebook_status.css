@@ -1,0 +1,322 @@
+/*  Facebook settings */
+@import(fileinput.min.css);
+.fb {
+background-color: #F6F7F8;
+ font-family: helvetica, arial, 'lucida grande', sans-serif;
+ font-size: 12px;
+ border: 1px solid;
+ border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+ -webkit-border-radius: 3px;
+}
+.font10 { font-size:10px;}
+.help-block { margin-bottom:0px;}
+.fb .post {
+ background-color: #fff;
+ padding:12px;
+}
+.fb .link {color: #3b5998; }
+.img_post {border-left:2px solid #ccc; padding: 10px 12px; display:block}
+.fileinput-remove, .file-thumbnail-footer  { display:none}
+.file-preview-frame{ text-align:center !important; margin-bottom:5px;}
+#download .top_arrow{
+	position:absolute;
+	right:0px;
+	top:0px;
+	background-image: url(/assets/images/facebook/udGFHoXFdsP.png);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -91px -441px;
+    height: 20px;
+    margin-right: 7px;
+    margin-top: 10px;
+    width: 20px;
+}
+#download {
+	position:relative;
+	max-width: 490px;
+	overflow:hidden;
+	line-height: 1.38;
+}
+#download .post .top {
+	margin-bottom: 11px;
+}
+#download .post .top .img {
+	float: left;
+	margin-right: 8px;
+}
+#download .post .top .name a {
+	color: #3b5998;
+	font-size: 14px;
+}
+#download .post .top .name span {
+	color: #9197a3;
+	font-size: 14px;
+}
+#download .post .top .text-name {
+	color: #3b5998 !important;
+	font-size: 14px;
+}
+#download .post .top .name .date {
+	color: #9197a3;
+}
+#download .post .text-message {
+	font-size: 14px;
+	word-wrap:break-word
+}
+#download .post .txtbottom {
+	margin-top: 10px;
+}
+#download .post .txtbottom  a{
+ color: #6d84b4;
+}
+#download .post_likes,  #download .post_shares{
+	background-color: #F6F7F8;
+	padding: 8px 12px;
+	border-top: 1px solid #e1e2e3;
+	margin: 0;
+}
+#download .post_likes a, #download .post_shares a{
+	color: #6d84b4;
+}
+#download .post_likes img {
+	margin-top: -2px;
+}
+#download #comments {
+	padding:0px;
+	margin:0px;
+	list-style:none;
+	background-color: #F6F7F8;
+	border-top: 1px solid #e1e2e3;
+	padding:12px;
+}
+#download #comments ul{ 
+  background-color: transparent;
+  margin-top: -10px;
+  padding: 8px 12px 6px 44px;
+  
+  }
+#download #comments ul img {
+	height:20px;
+	width:20px;
+}
+#download #comments ul li {
+	border-left: 2px solid #dcdee3;
+  margin-left: -2px;
+  padding-left: 8px;
+}
+i.shares{
+  background-image: url(/assets/images/facebook/udGFHoXFdsP.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: -249px -465px;
+  width: 14px;
+  display:inline-block;
+  height: 15px;
+  bottom: 2px;
+  margin-right:2px;
+}
+#download #comments .img{
+	float:left;
+	margin-right:8px;
+	margin-bottom:12px;
+}
+#download #comments  li {
+	word-wrap: break-word;
+    display: list-item;
+    text-align: -webkit-match-parent;
+	padding:4px 0;
+}
+#download #comments .txt{
+	position:relative;
+	overflow:hidden;
+	padding-right: 12px;
+}
+#download #comments a{
+ color:#3b5998
+}
+#download .post_write_comment {
+	background-color: #F6F7F8;
+	padding: 8px 12px;
+}
+#download .post_write_comment .img {
+	float: left;
+	margin-right: 8px;
+}
+#download .post_write_comment .txt .text_block {
+	padding-left: 40px;
+}
+#download .post_write_comment .txt .text_block .comment {
+	border: 1px solid #dcdee3;
+	min-height: 32px;
+	padding-left: 5px;
+	color: #bdc7d8;
+	background-color: #fff;
+	padding-bottom: 7px;
+	padding-top: 7px;
+}
+#download .post_write_comment .txt .text_block .comment .pull-right.text-right {
+	text-align: right;
+}
+#download .post_write_comment .txt .text_block .comment .pull-right.text-right .fot_ico {
+	margin: 0 6px;
+}
+#download .post_write_comment .txt .text_block .comment .pull-right.text-right .smile_ico {
+	margin: 0 10px;
+}
+
+	/*  Chat */
+	
+	input,textarea {
+		width:90%;	
+	}
+	
+	.fb ul.chat {
+		overflow:hidden;	
+		margin:0;
+		padding:0;
+	}
+	
+		.fb ul.chat li {
+			overflow:hidden;	
+			margin:0;
+			padding:0;
+			margin-bottom:10px;
+		}
+	
+		.fb ul.chat li .img {
+			float:left;
+			width:42px;
+		}
+		
+		.fb ul.chat li .message {
+			float:left;
+			width:380px;
+			color:#333333;
+			line-height:140%;
+			font-size:13px;
+			margin-top:-4px;
+		}
+	
+		
+		.fb ul.chat li .message a {
+			font-weight:bold;
+			font-size:13.2px;
+		}
+		
+		.fb ul.chat li .date {
+			float:left;
+			width:20px;
+			color:#c4c9d1;
+			font-size:11px;
+			margin-left:20px;
+			text-align:right;
+		}
+		
+		.fb ul.chat li.date_seperator {
+			overflow:visible;
+			margin-bottom:25px;
+		}
+		
+		.fb ul.chat li .seperator {
+			text-align:center;
+			border-bottom:1px solid #e8e8e8;
+		}
+		
+		.fb ul.chat li .seperator div {
+			display:inline-block;
+			position:relative;
+			top:10px;
+			background:#fff;
+			padding:0 6px;
+			color:#c4bfbf;
+			font-size:11px;
+		}
+/*  Chat */
+	
+	input,textarea {
+		width:90%;	
+	}
+	
+	.fb ul.chat {
+		overflow:hidden;	
+		margin:0;
+		padding:0;
+	}
+	
+		.fb ul.chat li {
+			overflow:hidden;	
+			margin:0;
+			padding:0;
+			margin-bottom:10px;
+		}
+	
+		.fb ul.chat li .img {
+			float:left;
+			width:42px;
+		}
+		
+		.fb ul.chat li .message {
+			float:left;
+			width:380px;
+			color:#333333;
+			line-height:140%;
+			font-size:13px;
+			margin-top:-4px;
+		}
+	
+		
+		.fb ul.chat li .message a {
+			font-weight:bold;
+			font-size:13.2px;
+		}
+		
+		.fb ul.chat li .date {
+			float:left;
+			width:20px;
+			color:#c4c9d1;
+			font-size:11px;
+			margin-left:20px;
+			text-align:right;
+		}
+		
+		.fb ul.chat li.date_seperator {
+			overflow:visible;
+			margin-bottom:25px;
+		}
+		
+		.fb ul.chat li .seperator {
+			text-align:center;
+			border-bottom:1px solid #e8e8e8;
+		}
+		
+		.fb ul.chat li .seperator div {
+			display:inline-block;
+			position:relative;
+			top:10px;
+			background:#fff;
+			padding:0 6px;
+			color:#c4bfbf;
+			font-size:11px;
+		}
+			
+/*
+     FILE ARCHIVED ON 09:39:37 Jun 05, 2023 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 00:20:34 Mar 30, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.818
+  exclusion.robots: 0.083
+  exclusion.robots.policy: 0.067
+  esindex: 0.016
+  cdx.remote: 29.268
+  LoadShardBlock: 579.562 (3)
+  PetaboxLoader3.datanode: 514.758 (5)
+  PetaboxLoader3.resolve: 805.487 (3)
+  load_resource: 877.548
+  loaddict: 169.329
+*/
