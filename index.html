@@ -3,6 +3,7 @@
 <base href="https://fakepostgenerator.com/">
 <link rel="stylesheet" href="assets/css/facebook_status.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
 <form method="get" action="">
@@ -77,59 +78,52 @@ Google 試算表網址：<input type="text" name="url">
 </div>
 </script>
 <script>
-var link = 'https://spreadsheets.google.com/feeds/list/12IRwz1oFXVtQEJgPoi8UqMDzabqo8LfOkSfsWIzRkvI/1/public/values?alt=json';
+var id = '12IRwz1oFXVtQEJgPoi8UqMDzabqo8LfOkSfsWIzRkvI';
 if (document.location.href.match(/url=([^&]*)/)) {
 	var matches = document.location.href.match(/url=([^&]*)/);
 	var url = decodeURIComponent(matches[1]);
-	var matches = url.match('/d/([^/]*)/');
-    var id = matches[1];
-	link = 'https://spreadsheets.google.com/feeds/list/' + matches[1] + '/1/public/values?alt=json';
-
-} else {
-    var id = '12IRwz1oFXVtQEJgPoi8UqMDzabqo8LfOkSfsWIzRkvI';
+	var m = url.match('/d/([^/]*)');
+	if (m) id = m[1];
 }
 $('input').val('https://docs.google.com/spreadsheets/d/' + id + '/edit#gid=0');
 
-$.get(link, function(ret){
-    for (var i = 0; i < ret.feed.entry.length; i ++) {
-		var entry = ret.feed.entry[i];
+var csvLink = 'https://docs.google.com/spreadsheets/d/' + id + '/export?format=csv';
+$.get(csvLink, function(csvData) {
+	var results = Papa.parse(csvData, { header: true, skipEmptyLines: true });
+	for (var i = 0; i < results.data.length; i++) {
+		var entry = results.data[i];
 		var post_dom = $($('#tmpl-fb').html());
-		if (!entry['gsx$名稱']['$t']) continue;
-console.log(entry);
+		if (!entry['名稱']) continue;
 
-		$('.text-name', post_dom).text(entry['gsx$名稱']['$t']);
-		$('.text-when', post_dom).text(entry['gsx$時間']['$t']);
-		$('.text-message', post_dom).text(entry['gsx$對話']['$t']);
-        if (entry['gsx$like數']) {
-            $('.text-likes', post_dom).text(entry['gsx$like數']['$t']);
-        }
-		if (entry['gsx$照片'] && entry['gsx$照片']['$t']) {
-			$('.img_message', post_dom).append($('<img>').attr('src', entry['gsx$照片']['$t']).addClass('img-responsive').attr('width', 490));
+		$('.text-name', post_dom).text(entry['名稱']);
+		$('.text-when', post_dom).text(entry['時間']);
+		$('.text-message', post_dom).text(entry['對話']);
+		if (entry['like數']) {
+			$('.text-likes', post_dom).text(entry['like數']);
 		}
-		if (entry['gsx$地點']['$t']) {
-			$('.text-place', post_dom).append('在').append($('<a></a>').text(entry['gsx$地點']['$t']).attr('href', '#'));
+		if (entry['照片']) {
+			$('.img_message', post_dom).append($('<img>').attr('src', entry['照片']).addClass('img-responsive').attr('width', 490));
 		}
-		if (entry['gsx$留言']['$t']) {
-			var lines = entry['gsx$留言']['$t'].split("\n");
-			for (var j = 0; j < lines.length; j ++) {
+		if (entry['地點']) {
+			$('.text-place', post_dom).append('在').append($('<a></a>').text(entry['地點']).attr('href', '#'));
+		}
+		if (entry['留言']) {
+			var lines = entry['留言'].split("\n");
+			for (var j = 0; j < lines.length; j++) {
 				var line = $.trim(lines[j]);
 				if (line == '') continue;
-
 				var li_dom = $($('#tmp-comment').html());
 				$('.comment-name', li_dom).text(line.split('：')[0]);
 				$('.fb-comment-text', li_dom).text(line.split('：')[1]);
-
 				$('.comments', post_dom).append(li_dom);
-
 			}
 		}
-		if (entry['gsx$頭像']['$t']) {
-            $('.profile-avatar', post_dom).attr('src', entry['gsx$頭像']['$t']);
-        }
-
+		if (entry['頭像']) {
+			$('.profile-avatar', post_dom).attr('src', entry['頭像']);
+		}
 		$('#result').append(post_dom);
 	}
-}, 'json');
+});
 </script>
 </body>
 </html>
